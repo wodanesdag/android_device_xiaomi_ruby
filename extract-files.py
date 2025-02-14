@@ -9,7 +9,6 @@ from extract_utils.fixups_blob import (
     blob_fixups_user_type,
 )
 from extract_utils.fixups_lib import (
-    lib_fixup_remove,
     lib_fixups,
     lib_fixups_user_type,
 )
@@ -31,7 +30,6 @@ def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
 lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
     ('vendor.mediatek.hardware.videotelephony@1.0',): lib_fixup_vendor_suffix,
-    ('libsink',): lib_fixup_remove,
 }
 
 blob_fixups: blob_fixups_user_type = {
@@ -60,7 +58,9 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libsensorndkbridge.so', 'android.hardware.sensors@1.0-convert-shared.so'),
     ('vendor/lib64/libmtkcam_stdutils.so', 'vendor/lib64/hw/android.hardware.camera.provider@2.6-impl-mediatek.so'): blob_fixup()
         .replace_needed('libutils.so', 'libutils-v32.so'),
-    'system_ext/lib64/libsink.so': blob_fixup()
+    'system_ext/lib64/libimsma.so': blob_fixup()
+        .replace_needed('libsink.so', 'libsink-mtk.so'),
+    'system_ext/lib64/libsink-mtk.so': blob_fixup()
         .add_needed('libaudioclient_shim.so'),
     'system_ext/lib64/libsource.so': blob_fixup()
         .add_needed('libui_shim.so'),

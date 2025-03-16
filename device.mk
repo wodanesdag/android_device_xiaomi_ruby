@@ -155,7 +155,6 @@ TARGET_DISABLE_MATLOG := true
 PRODUCT_PACKAGES += \
     android.hardware.nfc-service.st \
     com.android.nfc_extras \
-    NfcNci \
     Tag
 
 PRODUCT_COPY_FILES += \

@@ -148,6 +148,9 @@ PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/seccomp,$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy) \
     $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/media,$(TARGET_COPY_OUT_VENDOR)/etc)
 
+# Matlog
+TARGET_DISABLE_MATLOG := true
+
 # NFC
 PRODUCT_PACKAGES += \
     android.hardware.nfc-service.st \

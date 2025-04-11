@@ -62,6 +62,12 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libutils.so', 'libutils-v32.so'),
     ('vendor/lib/libnvram.so', 'vendor/lib64/libnvram.so', 'vendor/lib64/libsysenv.so'): blob_fixup()
         .add_needed('libbase_shim.so'),
+    ('vendor/lib64/libalLDC.so', 'vendor/lib64/libalhLDC.so' ): blob_fixup()
+        .clear_symbol_version('AHardwareBuffer_allocate')
+        .clear_symbol_version('AHardwareBuffer_describe')
+        .clear_symbol_version('AHardwareBuffer_lock')
+        .clear_symbol_version('AHardwareBuffer_release')
+        .clear_symbol_version('AHardwareBuffer_unlock'),
     'system_ext/lib64/libimsma.so': blob_fixup()
         .replace_needed('libsink.so', 'libsink-mtk.so'),
     'system_ext/lib64/libsink-mtk.so': blob_fixup()
